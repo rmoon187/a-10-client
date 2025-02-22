@@ -1,0 +1,29 @@
+.custom-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgb(132, 204, 22);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.custom-nav-btn::after {
+    font-size: 38px;
+    color: yellow;
+}
+
+.swiper-button-prev::after {
+    content: '‹';
+    /* Left Arrow */
+}
+
+.swiper-button-next::after {
+    content: '›';
+    /* Right Arrow */
+}
