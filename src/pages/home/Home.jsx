@@ -6,6 +6,8 @@ import "swiper/css/pagination";
 import b1 from "../../assets/banner1.jpg";
 import b2 from "../../assets/banner2.jpg";
 import b3 from "../../assets/banner3.jpg";
+import lamin from "../../assets/Lamine Yamal 19.jpg";
+import bgp from "../../assets/pexels-mohamed-ishaq-villan-1400163-8994432.jpg";
 import "./home.css";
 import { useEffect, useState } from "react";
 import { FaBaseballBall, FaBasketballBall, FaDumbbell, FaFutbol, FaSwimmer, FaTableTennis } from "react-icons/fa";
@@ -124,6 +126,33 @@ const Home = () => {
                             </div>
                         ))
                     }
+                </div>
+            </div>
+
+            {/* Ambassador section */}
+            <div class="grid grid-cols-1 md:grid-cols-10 mt-10">
+                {/* left side */}
+                <div class="relative bg-[#EAE88D] flex items-center justify-center col-span-6 p-10 md:p-20 lg:p-32 h-auto min-h-[400px] md:min-h-[600px] lg:min-h-[800px]">
+                    <img src={lamin} alt="Pablo Tellez" class="w-full object-cover h-full" />
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white px-4 md:px-6">
+                        <h3 class="text-lg md:text-lg lg:text-2xl font-semibold lg:tracking-widest text-center">Brand Ambassador</h3>
+                        <h1 class="text-4xl md:text-4xl lg:text-7xl font-bold text-center">Lamine Yamal</h1>
+                    </div>
+                    <button class="absolute bottom-6 md:bottom-16 lg:bottom-28 bg-white text-black px-4 py-2 md:px-6 md:py-3 font-semibold">
+                        DISCOVER
+                    </button>
+                </div>
+
+                {/* right side */}
+                <div class="relative flex items-center justify-center col-span-4 h-auto min-h-[400px] md:min-h-[600px] lg:min-h-[800px]">
+                    <div class="absolute inset-0 bg-black opacity-50"></div>
+                    <img src={bgp} alt="Pickleball Paddles" class="w-full object-cover h-full" />
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white px-4 md:px-6">
+                        <h1 class="text-4xl md:text-4xl lg:text-7xl font-bold absolute top-48 md:top-80 lg:top-[700px] text-center">SOCCER</h1>
+                        <p class="absolute  md:bottom-20 lg:bottom-28 text-lg lg:text-2xl lg:tracking-widest font-semibold text-center">
+                            Most Exciting Striker in the world
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
