@@ -11,6 +11,7 @@ import bgp from "../../assets/pexels-mohamed-ishaq-villan-1400163-8994432.jpg";
 import "./home.css";
 import { useEffect, useState } from "react";
 import { FaBaseballBall, FaBasketballBall, FaDumbbell, FaFutbol, FaSwimmer, FaTableTennis } from "react-icons/fa";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -53,9 +54,42 @@ const Home = () => {
         Swimming: <FaSwimmer className="text-3xl" />,
         Fitness: <FaDumbbell className="text-3xl" />
     };
+    const testimonials = [
+        {
+            id: 1,
+            name: "John Doe",
+            review: "The quality of the products is outstanding. I highly recommend this store!",
+            image: "https://i.ibb.co/WWRsmbrd/jhon.jpg"
+        },
+        {
+            id: 2,
+            name: "Jane Smith",
+            review: "Great customer service and fast shipping. Will definitely buy again.",
+            image: "https://i.ibb.co/hFb7mPQB/jane.jpg"
+        },
+        {
+            id: 3,
+            name: "Mike Johnson",
+            review: "Best sports equipment I've ever used. Worth every penny!",
+            image: "https://i.ibb.co/C3JRvg43/mike.jpg"
+        }
+    ];
+
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const testimonial = testimonials[index];
+
 
     return (
-        <div className="mb-14">
+        <div>
 
             {/* Slider */}
             <div className="w-full h-[600px] relative">
@@ -130,31 +164,74 @@ const Home = () => {
             </div>
 
             {/* Ambassador section */}
-            <div class="grid grid-cols-1 md:grid-cols-10 mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-10 mt-10">
                 {/* left side */}
-                <div class="relative bg-[#EAE88D] flex items-center justify-center col-span-6 p-10 md:p-20 lg:p-32 h-auto min-h-[400px] md:min-h-[600px] lg:min-h-[800px]">
-                    <img src={lamin} alt="Pablo Tellez" class="w-full object-cover h-full" />
-                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white px-4 md:px-6">
-                        <h3 class="text-lg md:text-lg lg:text-2xl font-semibold lg:tracking-widest text-center">Brand Ambassador</h3>
-                        <h1 class="text-4xl md:text-4xl lg:text-7xl font-bold text-center">Lamine Yamal</h1>
+                <div className="relative bg-[#EAE88D] flex items-center justify-center col-span-6 p-10 md:p-20 lg:p-32 h-auto min-h-[400px] md:min-h-[600px] lg:min-h-[800px]">
+                    <img src={lamin} alt="Pablo Tellez" className="w-full object-cover h-full" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 md:px-6">
+                        <h3 className="text-lg md:text-lg lg:text-2xl font-semibold lg:tracking-widest text-center">Brand Ambassador</h3>
+                        <h1 className="text-4xl md:text-4xl lg:text-7xl font-bold text-center">Lamine Yamal</h1>
                     </div>
-                    <button class="absolute bottom-6 md:bottom-16 lg:bottom-28 bg-white text-black px-4 py-2 md:px-6 md:py-3 font-semibold">
+                    <button className="absolute bottom-6 md:bottom-16 lg:bottom-28 bg-white text-black px-4 py-2 md:px-6 md:py-3 font-semibold">
                         DISCOVER
                     </button>
                 </div>
 
                 {/* right side */}
-                <div class="relative flex items-center justify-center col-span-4 h-auto min-h-[400px] md:min-h-[600px] lg:min-h-[800px]">
-                    <div class="absolute inset-0 bg-black opacity-50"></div>
-                    <img src={bgp} alt="Pickleball Paddles" class="w-full object-cover h-full" />
-                    <div class="absolute inset-0 flex flex-col items-center justify-center text-white px-4 md:px-6">
-                        <h1 class="text-4xl md:text-4xl lg:text-7xl font-bold absolute top-48 md:top-80 lg:top-[700px] text-center">SOCCER</h1>
-                        <p class="absolute  md:bottom-20 lg:bottom-28 text-lg lg:text-2xl lg:tracking-widest font-semibold text-center">
+                <div className="relative flex items-center justify-center col-span-4 h-auto min-h-[400px] md:min-h-[600px] lg:min-h-[800px]">
+                    <div className="absolute inset-0 bg-black opacity-50"></div>
+                    <img src={bgp} alt="Pickleball Paddles" className="w-full object-cover h-full" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 md:px-6">
+                        <h1 className="text-4xl md:text-4xl lg:text-7xl font-bold absolute top-48 md:top-80 lg:top-[700px] text-center">SOCCER</h1>
+                        <p className="absolute md:bottom-20 lg:bottom-28 text-lg lg:text-2xl lg:tracking-widest font-semibold text-center">
                             Most Exciting Striker in the world
                         </p>
                     </div>
                 </div>
             </div>
+
+
+            {/* testimonial sec */}
+            <section
+                className="py-16 px-4"
+                style={{
+                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    minHeight: "600px", 
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <div className="max-w-4xl mx-auto text-center">
+                    <h2 className="text-4xl font-bold text-white mb-8">
+                        What Our Customers Say
+                    </h2>
+                    <div className="flex justify-center">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={testimonial.id}
+                                className="border p-8 shadow-2xl rounded-lg text-center bg-white w-full max-w-md"
+                                initial={{ opacity: 0, x: 100 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -100 }}
+                                transition={{ duration: 0.5, ease: "easeInOut" }}
+                            >
+                                <div className="relative w-24 h-24 mx-auto mb-6">
+                                    <img
+                                        src={testimonial.image}
+                                        alt={testimonial.name}
+                                        className="w-full h-full rounded-full border-4 border-purple-300 shadow-md"
+                                    />
+                                </div>
+                                <h2 className="text-2xl font-bold mt-4 text-gray-800">
+                                    {testimonial.name}
+                                </h2>
+                                <p className="text-gray-600 italic mt-4">"{testimonial.review}"</p>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+                </div>
+            </section>
         </div>
     );
 };
