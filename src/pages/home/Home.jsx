@@ -196,7 +196,7 @@ const Home = () => {
                 className="py-16 px-4"
                 style={{
                     background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    minHeight: "600px", 
+                    minHeight: "600px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -220,7 +220,7 @@ const Home = () => {
                                     <img
                                         src={testimonial.image}
                                         alt={testimonial.name}
-                                        className="w-full h-full rounded-full border-4 border-purple-300 shadow-md"
+                                        className="w-full h-full object-cover rounded-full border-4 border-purple-300 shadow-md"
                                     />
                                 </div>
                                 <h2 className="text-2xl font-bold mt-4 text-gray-800">

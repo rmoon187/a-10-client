@@ -3,6 +3,9 @@ import Layout from "../MainLayout/Layout";
 import Home from "../pages/home/Home";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import PrivateRoute from "../components/PrivateRoute";
+import AddEquipment from "../pages/addEquipment";
+import AllSportsEquipment from "../pages/AllSportsEquipment";
 
 
 
@@ -23,6 +26,14 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>,
+            },
+            {
+                path: '/all-sports',
+                element: <AllSportsEquipment></AllSportsEquipment>,
+            },
+            {
+                path: '/add-equipment',
+                element: <PrivateRoute><AddEquipment></AddEquipment></PrivateRoute>,
             },
         ]
     }
