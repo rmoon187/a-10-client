@@ -4,7 +4,7 @@ import Home from "../pages/home/Home";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import PrivateRoute from "../components/PrivateRoute";
-import AddEquipment from "../pages/addEquipment";
+import AddEquipment from "../pages/AddEquipment";
 import AllSportsEquipment from "../pages/AllSportsEquipment";
 
 
