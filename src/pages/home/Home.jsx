@@ -12,12 +12,14 @@ import "./home.css";
 import { useEffect, useState } from "react";
 import { FaBaseballBall, FaBasketballBall, FaDumbbell, FaFutbol, FaSwimmer, FaTableTennis } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch("http://localhost:5000/products?limit=6")
@@ -156,7 +158,7 @@ const Home = () => {
                                 <p className="text-sm text-gray-600">{product.categoryName}</p>
                                 <p className="text-gray-700">{product.description}</p>
                                 <p className="text-lg font-bold text-green-600">${product.price}</p>
-                                <button className="mt-2 px-4 py-2 bg-blue-600 text-white rounded">View Details</button>
+                                <button onClick={() => navigate(`/details/${product._id}`)} className="mt-2 px-4 py-2 bg-blue-600 text-white rounded">View Details</button>
                             </div>
                         ))
                     }

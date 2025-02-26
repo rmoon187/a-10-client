@@ -48,7 +48,7 @@ const AllSportsEquipment = () => {
                                 </td>
                                 <td className="py-3 px-4">
                                     <button
-                                        onClick={() => navigate(`/equipment/${item._id}`)}
+                                        onClick={() => navigate(`/details/${item._id}`)}
                                         className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 shadow-md"
                                     >
                                         View Details

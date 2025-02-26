@@ -6,6 +6,7 @@ import Register from "../components/Register";
 import PrivateRoute from "../components/PrivateRoute";
 import AddEquipment from "../pages/AddEquipment";
 import AllSportsEquipment from "../pages/AllSportsEquipment";
+import ViewDetails from "../pages/ViewDetails";
 
 
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: '/add-equipment',
                 element: <PrivateRoute><AddEquipment></AddEquipment></PrivateRoute>,
+            },
+            {
+                path: '/details/:id',
+                element: <PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
             },
         ]
     }
