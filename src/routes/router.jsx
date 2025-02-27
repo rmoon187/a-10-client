@@ -7,6 +7,8 @@ import PrivateRoute from "../components/PrivateRoute";
 import AddEquipment from "../pages/AddEquipment";
 import AllSportsEquipment from "../pages/AllSportsEquipment";
 import ViewDetails from "../pages/ViewDetails";
+import MyEquipmentList from "../pages/MyEquipmentList";
+import UpdateEquipment from "../pages/UpdateEquipment";
 
 
 
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
             {
                 path: '/details/:id',
                 element: <PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
+            },
+            {
+                path: '/update/:id',
+                element: <PrivateRoute><UpdateEquipment></UpdateEquipment></PrivateRoute>,
+            },
+            {
+                path: '/my-equipment',
+                element: <PrivateRoute><MyEquipmentList></MyEquipmentList></PrivateRoute>,
             },
         ]
     }
