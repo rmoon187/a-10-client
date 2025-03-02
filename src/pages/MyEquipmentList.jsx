@@ -8,11 +8,14 @@ const MyEquipmentList = () => {
     const [equipment, setEquipment] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/my-equipment')
-            .then((res) => res.json())
-            .then((data) => setEquipment(data))
-            .catch((error) => console.error("Error fetching data:", error));
-    }, []);
+        if (user?.email) {
+            fetch(`http://localhost:5000/my-equipment?email=${encodeURIComponent(user.email)}`)
+                .then((res) => res.json())
+                .then((data) => setEquipment(data))
+                .catch((error) => console.error("Error fetching data:", error));
+        }
+    }, [user?.email]);
+
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -25,7 +28,7 @@ const MyEquipmentList = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`/api/equipment/${id}`, { method: "DELETE" })
+                fetch(`/my-equipment/${id}`, { method: "DELETE" })
                     .then((res) => res.json())
                     .then(() => {
                         setEquipment(equipment.filter((item) => item.id !== id));

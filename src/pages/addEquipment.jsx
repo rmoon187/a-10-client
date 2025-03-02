@@ -27,34 +27,24 @@ const AddEquipment = () => {
         };
 
         try {
-            // Define both API endpoints
-            const api1 = fetch("http://localhost:5000/products", {
+            const response = await fetch("http://localhost:5000/products", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
 
-            const api2 = fetch("http://localhost:5000/my-equipment", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-            });
-
-            // Use Promise.all to handle both requests simultaneously
-            const [response1, response2] = await Promise.all([api1, api2]);
-
-            // Check if both requests were successful
-            if (response1.ok && response2.ok) {
-                Swal.fire("Success!", "Equipment added successfully to both APIs!", "success");
+            if (response.ok) {
+                Swal.fire("Success!", "Equipment added successfully!", "success");
                 form.reset(); // Reset form fields
                 navigate("/");
             } else {
-                Swal.fire("Error!", "Failed to add equipment to one or both APIs.", "error");
+                Swal.fire("Error!", "Failed to add equipment.", "error");
             }
         } catch (error) {
             Swal.fire("Error!", "Something went wrong.", "error");
         }
     };
+
 
     return (
         <div className="max-w-4xl mx-auto my-10 p-8 bg-gradient-to-r from-[#4E342E] to-[#3E2723] rounded-lg shadow-2xl">
