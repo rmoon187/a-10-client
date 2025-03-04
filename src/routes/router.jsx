@@ -9,6 +9,7 @@ import AllSportsEquipment from "../pages/AllSportsEquipment";
 import ViewDetails from "../pages/ViewDetails";
 import MyEquipmentList from "../pages/MyEquipmentList";
 import UpdateEquipment from "../pages/UpdateEquipment";
+import NotFound from "../pages/NotFound";
 
 
 
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout></Layout>,
+        errorElement: <NotFound></NotFound>,
         children: [
             {
                 path: '/',
@@ -46,6 +48,7 @@ const router = createBrowserRouter([
                 path: '/update/:id',
                 element: <PrivateRoute><UpdateEquipment></UpdateEquipment></PrivateRoute>,
             },
+
             {
                 path: '/my-equipment',
                 element: <PrivateRoute><MyEquipmentList></MyEquipmentList></PrivateRoute>,

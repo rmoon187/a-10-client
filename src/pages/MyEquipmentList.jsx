@@ -28,10 +28,10 @@ const MyEquipmentList = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`/my-equipment/${id}`, { method: "DELETE" })
+                fetch(`http://localhost:5000/products/${id}`, { method: "DELETE" })
                     .then((res) => res.json())
                     .then(() => {
-                        setEquipment(equipment.filter((item) => item.id !== id));
+                        setEquipment(equipment.filter((item) => item._id !== id));
                         Swal.fire("Deleted!", "Your equipment has been deleted.", "success");
                     })
                     .catch((error) => console.error("Error deleting item:", error));
