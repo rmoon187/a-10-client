@@ -27,3 +27,8 @@
     content: '›';
     /* Right Arrow */
 }
+
+.dark .custom-nav-btn {
+    background-color: white;
+    color: black;
+}

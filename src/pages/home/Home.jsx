@@ -13,13 +13,26 @@ import { useEffect, useState } from "react";
 import { FaBaseballBall, FaBasketballBall, FaDumbbell, FaFutbol, FaSwimmer, FaTableTennis } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
     const navigate = useNavigate()
+
+
+    useEffect(() => {
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(theme === "light" ? "dark" : "light");
+    };
+
 
     useEffect(() => {
         fetch("http://localhost:5000/products?limit=6")
@@ -91,7 +104,14 @@ const Home = () => {
 
 
     return (
-        <div>
+        <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-all">
+
+            <button
+                onClick={toggleTheme}
+                className="fixed top-4 right-4 p-2 bg-gray-200 dark:bg-gray-700 rounded-full"
+            >
+                {theme === "light" ? <FaMoon className="text-xl" /> : <FaSun className="text-xl text-yellow-400" />}
+            </button>
 
             {/* Slider */}
             <div className="w-full h-[600px] relative">

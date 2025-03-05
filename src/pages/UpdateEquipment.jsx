@@ -49,8 +49,8 @@ const UpdateEquipment = () => {
             .then((data) => {
 
                 Swal.fire("Updated!", "Equipment details updated successfully.", "success");
-                // navigate("/my-equipment");
-                console.log(data)
+                navigate("/my-equipment");
+
             })
 
             .catch((error) => console.error("Error updating equipment:", error));
