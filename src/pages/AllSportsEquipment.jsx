@@ -14,13 +14,25 @@ const AllSportsEquipment = () => {
 
     }, []);
 
-
+    const handleSortDescending = () => {
+        const sortedEquipment = [...equipment].sort((a, b) => b.price - a.price);
+        setEquipment(sortedEquipment);
+    };
 
     return (
         <div className="container mx-auto p-6">
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
                 🏆 All Sports Equipment
             </h2>
+
+            <div className="flex justify-end mb-4">
+                <button
+                    onClick={handleSortDescending}
+                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 shadow-md"
+                >
+                    Sort by Price (High to Low)
+                </button>
+            </div>
 
             <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
                 <table className="min-w-full border-collapse">
