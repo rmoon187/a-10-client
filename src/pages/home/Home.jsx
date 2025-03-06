@@ -108,7 +108,7 @@ const Home = () => {
 
             <button
                 onClick={toggleTheme}
-                className="fixed top-4 right-4 p-2 bg-gray-200 dark:bg-gray-700 rounded-full"
+                className="absolute top-6 right-40 p-2 bg-gray-200 dark:bg-gray-700 rounded-full"
             >
                 {theme === "light" ? <FaMoon className="text-xl" /> : <FaSun className="text-xl text-yellow-400" />}
             </button>
