@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -114,37 +114,39 @@ const Home = () => {
             </button>
 
             {/* Slider */}
-            <div className="w-full h-[600px] relative">
+            <div className="w-full h-[350px] md:h-[500px] lg:h-[600px] relative">
                 <div className="swiper-button-prev custom-nav-btn left-4"></div>
                 <div className="swiper-button-next custom-nav-btn right-4"></div>
 
                 <Swiper
                     loop={true}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
                     navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
                     pagination={{ clickable: true }}
-                    modules={[Navigation, Pagination]}
+                    modules={[Navigation, Pagination, Autoplay]}
                     className="w-full h-full"
                 >
                     <SwiperSlide className="relative w-full h-full">
                         <img src={b1} alt="Sports Banner 1" className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-5xl font-bold">
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-2xl md:text-4xl lg:text-5xl font-bold text-center px-4">
                             Gear Up for Victory!
                         </div>
                     </SwiperSlide>
                     <SwiperSlide className="relative w-full h-full">
                         <img src={b2} alt="Sports Banner 2" className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-5xl font-bold">
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-2xl md:text-4xl lg:text-5xl font-bold text-center px-4">
                             Top-Quality Sports Equipment
                         </div>
                     </SwiperSlide>
                     <SwiperSlide className="relative w-full h-full">
                         <img src={b3} alt="Sports Banner 3" className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-5xl font-bold">
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-2xl md:text-4xl lg:text-5xl font-bold text-center px-4">
                             Stay Ahead in the Game
                         </div>
                     </SwiperSlide>
                 </Swiper>
             </div>
+
 
             {/* Sports Categories Section */}
             <div className="mt-12 px-4 mb-10">
