@@ -7,7 +7,7 @@ const AllSportsEquipment = () => {
 
     useEffect(() => {
         // Fetch data from the backend or Firebase
-        fetch("http://localhost:5000/products")
+        fetch("https://ass-10-server2.vercel.app/products")
             .then(res => res.json())
             .then(data => setEquipment(data))
             .catch(error => console.error("Error fetching products:", error));

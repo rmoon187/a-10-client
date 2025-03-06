@@ -9,7 +9,7 @@ const MyEquipmentList = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/my-equipment?email=${encodeURIComponent(user.email)}`)
+            fetch(`https://ass-10-server2.vercel.app/my-equipment?email=${encodeURIComponent(user.email)}`)
                 .then((res) => res.json())
                 .then((data) => setEquipment(data))
                 .catch((error) => console.error("Error fetching data:", error));
@@ -28,7 +28,7 @@ const MyEquipmentList = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/products/${id}`, { method: "DELETE" })
+                fetch(`https://ass-10-server2.vercel.app/products/${id}`, { method: "DELETE" })
                     .then((res) => res.json())
                     .then(() => {
                         setEquipment(equipment.filter((item) => item._id !== id));

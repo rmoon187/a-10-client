@@ -35,19 +35,19 @@ const Home = () => {
 
 
     useEffect(() => {
-        fetch("http://localhost:5000/products?limit=6")
+        fetch("https://ass-10-server2.vercel.app/products?limit=6")
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
             })
             .catch(error => console.error("Error fetching products:", error));
 
-        fetch("http://localhost:5000/products")
+        fetch("https://ass-10-server2.vercel.app/products")
             .then(res => res.json())
             .then(data => setAllProducts(data))
             .catch(error => console.error("Error fetching products:", error));
 
-        fetch("http://localhost:5000/categories")
+        fetch("https://ass-10-server2.vercel.app/categories")
             .then(res => res.json())
             .then(data => setCategories(data))
             .catch(error => console.error("Error fetching categories:", error));

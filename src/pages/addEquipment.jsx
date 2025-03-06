@@ -27,7 +27,7 @@ const AddEquipment = () => {
         };
 
         try {
-            const response = await fetch("http://localhost:5000/products", {
+            const response = await fetch("https://ass-10-server2.vercel.app/products", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),

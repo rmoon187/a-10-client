@@ -22,7 +22,7 @@ const UpdateEquipment = () => {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://ass-10-server2.vercel.app/products/${id}`)
             .then((res) => res.json())
             .then((data) => setFormData((prev) => ({ ...prev, ...data })))
             .catch((error) => console.error("Error fetching equipment:", error));
@@ -36,7 +36,7 @@ const UpdateEquipment = () => {
 
         e.preventDefault();
 
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://ass-10-server2.vercel.app/products/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

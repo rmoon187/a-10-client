@@ -1,20 +1,21 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ViewDetails = () => {
     const { id } = useParams();
     const [item, setItem] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://ass-10-server2.vercel.app/products/${id}`)
             .then((res) => res.json())
             .then((data) => setItem(data))
             .catch((err) => console.error("Error fetching item details:", err));
     }, [id]);
 
     if (!item) {
-        return <div className="text-center text-lg font-semibold text-primary">Loading...</div>;
+        return <LoadingSpinner></LoadingSpinner>
     }
 
     return (
