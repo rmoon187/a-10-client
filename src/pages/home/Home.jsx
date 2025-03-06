@@ -14,6 +14,7 @@ import { FaBaseballBall, FaBasketballBall, FaDumbbell, FaFutbol, FaSwimmer, FaTa
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -22,6 +23,7 @@ const Home = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
@@ -35,29 +37,32 @@ const Home = () => {
 
 
     useEffect(() => {
-        fetch("https://ass-10-server2.vercel.app/products?limit=6")
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data);
+        setLoading(true);
+        Promise.all([
+            fetch("https://ass-10-server2.vercel.app/products?limit=6").then(res => res.json()),
+            fetch("https://ass-10-server2.vercel.app/products").then(res => res.json()),
+            fetch("https://ass-10-server2.vercel.app/categories").then(res => res.json())
+        ])
+            .then(([limitedProducts, allProducts, categories]) => {
+                setProducts(limitedProducts);
+                setAllProducts(allProducts);
+                setCategories(categories);
             })
-            .catch(error => console.error("Error fetching products:", error));
-
-        fetch("https://ass-10-server2.vercel.app/products")
-            .then(res => res.json())
-            .then(data => setAllProducts(data))
-            .catch(error => console.error("Error fetching products:", error));
-
-        fetch("https://ass-10-server2.vercel.app/categories")
-            .then(res => res.json())
-            .then(data => setCategories(data))
-            .catch(error => console.error("Error fetching categories:", error));
+            .catch(error => console.error("Error fetching data:", error))
+            .finally(() => setLoading(false));
     }, []);
 
     const handleCategoryClick = (categoryName) => {
-        const filtered = allProducts.filter(product => product.categoryName === categoryName)
-        setProducts(filtered)
-        setSelectedCategory(categoryName)
+        setLoading(true);
+
+        setTimeout(() => {
+            const filtered = allProducts.filter(product => product.categoryName === categoryName);
+            setProducts(filtered);
+            setSelectedCategory(categoryName);
+            setLoading(false);
+        }, 500);
     };
+
 
 
     // Category Icons
@@ -108,7 +113,7 @@ const Home = () => {
 
             <button
                 onClick={toggleTheme}
-                className="absolute top-6 right-40 p-2 bg-gray-200 dark:bg-gray-700 rounded-full"
+                className="absolute top-6 right-52 p-2 bg-gray-200 dark:bg-gray-700 rounded-full"
             >
                 {theme === "light" ? <FaMoon className="text-xl" /> : <FaSun className="text-xl text-yellow-400" />}
             </button>
@@ -171,20 +176,25 @@ const Home = () => {
                 <h2 className="text-2xl font-bold text-center mb-4">
                     {selectedCategory ? `${selectedCategory} Products` : "Featured Products"}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {
-                        products.map(product => (
+                {loading ? (
+                    <LoadingSpinner></LoadingSpinner>
+                ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {products.map(product => (
                             <div key={product._id} className="border p-4 shadow-lg rounded-lg">
-                                <img src={product.image} alt={product.itemName} className="w-full h-60 object-contain" style={{ transform: 'scale(1.1)', objectPosition: 'center' }} />
+                                <img src={product.image} alt={product.itemName} className="w-full h-60 object-contain" />
                                 <h2 className="text-xl font-bold mt-2">{product.itemName}</h2>
                                 <p className="text-sm text-gray-600">{product.categoryName}</p>
                                 <p className="text-gray-700">{product.description}</p>
                                 <p className="text-lg font-bold text-green-600">${product.price}</p>
-                                <button onClick={() => navigate(`/details/${product._id}`)} className="mt-2 px-4 py-2 bg-blue-600 text-white rounded">View Details</button>
+                                <button onClick={() => navigate(`/details/${product._id}`)} className="mt-2 px-4 py-2 bg-blue-600 text-white rounded">
+                                    View Details
+                                </button>
                             </div>
-                        ))
-                    }
-                </div>
+                        ))}
+                    </div>
+                )}
+
             </div>
 
             {/* Ambassador section */}

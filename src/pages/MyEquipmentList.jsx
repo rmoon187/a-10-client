@@ -2,20 +2,23 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const MyEquipmentList = () => {
     const { user } = useContext(AuthContext);
     const [equipment, setEquipment] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (user?.email) {
+            setLoading(true);
             fetch(`https://ass-10-server2.vercel.app/my-equipment?email=${encodeURIComponent(user.email)}`)
                 .then((res) => res.json())
                 .then((data) => setEquipment(data))
-                .catch((error) => console.error("Error fetching data:", error));
+                .catch((error) => console.error("Error fetching data:", error))
+                .finally(() => setLoading(false));
         }
     }, [user?.email]);
-
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -39,26 +42,38 @@ const MyEquipmentList = () => {
         });
     };
 
+    if (loading) {
+        return <LoadingSpinner />;
+    }
+
     return (
-        <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {equipment.map((item) => (
-                <div key={item._id} className="card bg-base-100 shadow-xl p-4">
-                    <figure>
-                        <img src={item.image} alt={item.name} className="w-full h-48 object-cover rounded-md" />
-                    </figure>
-                    <div className="card-body">
-                        <h3 className="card-title">{item.itemName}</h3>
-                        <p className="text-gray-600">{item.description}</p>
-                        <p className="font-semibold">${item.price}</p>
-                        <div className="mt-4 flex justify-between">
-                            <Link to={`/update/${item._id}`} className="btn btn-primary">Update</Link>
-                            <button className="btn btn-error" onClick={() => handleDelete(item._id)}>
-                                Delete
-                            </button>
-                        </div>
-                    </div>
+        <div className="p-6">
+            {equipment.length === 0 ? (
+                <div className="flex justify-center items-center h-72">
+                    <p className="text-center text-gray-500 text-3xl">No equipment found for you!</p>
                 </div>
-            ))}
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {equipment.map((item) => (
+                        <div key={item._id} className="card bg-base-100 shadow-xl p-4">
+                            <figure>
+                                <img src={item.image} alt={item.name} className="w-full h-48 object-cover rounded-md" />
+                            </figure>
+                            <div className="card-body">
+                                <h3 className="card-title">{item.itemName}</h3>
+                                <p className="text-gray-600">{item.description}</p>
+                                <p className="font-semibold">${item.price}</p>
+                                <div className="mt-4 flex justify-between">
+                                    <Link to={`/update/${item._id}`} className="btn btn-primary">Update</Link>
+                                    <button className="btn btn-error" onClick={() => handleDelete(item._id)}>
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
