@@ -35,7 +35,7 @@ const AddEquipment = () => {
 
             if (response.ok) {
                 Swal.fire("Success!", "Equipment added successfully!", "success");
-                form.reset(); // Reset form fields
+                form.reset();
                 navigate("/my-equipment");
             } else {
                 Swal.fire("Error!", "Failed to add equipment.", "error");
