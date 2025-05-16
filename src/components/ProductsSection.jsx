@@ -13,7 +13,7 @@ const ProductsSection = ({
   const navigate = useNavigate();
 
   return (
-    <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
+    <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800 dark:text-white">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <h2 className="text-3xl font-bold mb-4 md:mb-0">

@@ -43,7 +43,7 @@ const Register = () => {
 
     return (
         <div className="flex flex-col items-center p-6">
-            <h2 className="text-2xl font-bold mb-5">Register</h2>
+            <h2 className="text-2xl dark:text-white font-bold mb-5">Register</h2>
             <form onSubmit={Register} className="flex flex-col space-y-4 w-80">
                 <input type="text" placeholder="Name" name='name' onChange={(e) => setName(e.target.value)} className="p-2 border rounded" required />
                 <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="p-2 border rounded" required />

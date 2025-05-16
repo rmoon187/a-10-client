@@ -55,13 +55,13 @@ const MyEquipmentList = () => {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {equipment.map((item) => (
-                        <div key={item._id} className="card bg-base-100 shadow-xl p-4">
+                        <div key={item._id} className="card bg-base-100 dark:bg-gray-800 shadow-xl p-4">
                             <figure>
                                 <img src={item.image} alt={item.name} className="w-full h-48 object-cover rounded-md" />
                             </figure>
                             <div className="card-body">
-                                <h3 className="card-title">{item.itemName}</h3>
-                                <p className="text-gray-600">{item.description}</p>
+                                <h3 className="card-title dark:text-white">{item.itemName}</h3>
+                                <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
                                 <p className="font-semibold">${item.price}</p>
                                 <div className="mt-4 flex justify-between">
                                     <Link to={`/update/${item._id}`} className="btn btn-primary">Update</Link>

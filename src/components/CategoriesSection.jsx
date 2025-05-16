@@ -7,7 +7,7 @@ const CategoriesSection = ({
   handleCategoryClick,
 }) => {
   return (
-    <section className="py-16 px-4">
+    <section className="py-16 px-4 dark:text-white">
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-3xl font-bold text-center mb-12">
           Sports Categories

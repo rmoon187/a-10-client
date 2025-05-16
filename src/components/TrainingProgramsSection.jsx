@@ -5,7 +5,7 @@ import { TRAINING_PROGRAMS } from "../constants";
 
 const TrainingProgramsSection = () => {
   return (
-    <section className="py-16 px-4 bg-white dark:bg-gray-900">
+    <section className="py-16 px-4 bg-white dark:bg-gray-900 dark:text-white">
       <div className="container mx-auto max-w-7xl">
         <h2 className="text-3xl font-bold text-center mb-4">Premium Training Programs</h2>
         <p className="text-xl text-center mb-12 text-gray-600 dark:text-gray-300">
