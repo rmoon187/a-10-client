@@ -118,7 +118,7 @@ const AllSportsEquipment = () => {
 
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <span className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <span className="text-xl font-bold text-blue-800 dark:text-gray-200">
                     ${item.price}
                   </span>
                   {item.originalPrice && (
