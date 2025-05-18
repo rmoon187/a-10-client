@@ -22,7 +22,7 @@ const ProductsSection = ({
           </h2>
           {selectedCategory && (
             <button
-              onClick={handleShowAll}
+             onClick={() => navigate(`/all-sports`)}
               className="flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium"
             >
               View All Products <FaArrowRight className="ml-2" />
