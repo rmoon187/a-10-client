@@ -9,16 +9,26 @@ const MyEquipmentList = () => {
     const [equipment, setEquipment] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        if (user?.email) {
-            setLoading(true);
-            fetch(`https://ass-10-server2.vercel.app/my-equipment?email=${encodeURIComponent(user.email)}`)
-                .then((res) => res.json())
-                .then((data) => setEquipment(data))
-                .catch((error) => console.error("Error fetching data:", error))
-                .finally(() => setLoading(false));
+   useEffect(() => {
+  if (user?.email) {
+    setLoading(true);
+    fetch(`https://ass-10-server2.vercel.app/my-equipment?email=${user.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.data)) {
+          setEquipment(data.data);
+        } else {
+          setEquipment([]);
+          console.error("Invalid response format:", data);
         }
-    }, [user?.email]);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setEquipment([]);
+      })
+      .finally(() => setLoading(false));
+  }
+}, [user?.email]);
 
     const handleDelete = (id) => {
         Swal.fire({

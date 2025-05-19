@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom"; // Changed from Link to NavLink
+import { useContext, useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import logo from "../assets/logo.webp";
 import { AuthContext } from "../provider/AuthProvider";
@@ -8,6 +8,21 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, handleLogOut } = useContext(AuthContext);
   const [darkMode, setDarkMode] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Toggle dark mode and apply it to the document
   const toggleDarkMode = () => {
@@ -23,8 +38,13 @@ const Navbar = () => {
   const activeStyle = "font-bold underline underline-offset-4";
   const baseLinkStyle = "hover:text-black dark:hover:text-gray-300";
 
+  // Navbar background classes based on scroll and dark mode
+  const navbarBackground = isScrolled 
+    ? "bg-lime-600/80 dark:bg-gray-800/70 backdrop-blur-sm" 
+    : "bg-[#84cc16] dark:bg-gray-800";
+
   return (
-    <nav className="sticky top-0 z-50 bg-[#84cc16] dark:bg-gray-800 text-white shadow-lg">
+    <nav className={`sticky top-0 z-50 ${navbarBackground} text-white shadow-lg transition-all duration-300`}>
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo & Name */}
         <div className="flex items-center gap-2 text-2xl font-bold">
@@ -153,7 +173,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-[#84cc16] dark:bg-gray-800 flex flex-col items-center py-4 space-y-4">
+        <div className={`md:hidden ${navbarBackground} flex flex-col items-center py-4 space-y-4`}>
           <NavLink
             to="/"
             className={({ isActive }) =>
